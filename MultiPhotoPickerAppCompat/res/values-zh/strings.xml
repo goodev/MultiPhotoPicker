@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">选择图片</string>
+    <string name="menu_done">完成</string>
+    <plurals name="number_of_items_selected">
+        <item quantity="zero">"选中了 %1$d 项"</item>
+        <item quantity="one">"选中了 %1$d 项"</item>
+        <item quantity="other">"选中了 %1$d 项"</item>
+    </plurals>
+
+</resources>
