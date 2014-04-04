@@ -30,6 +30,37 @@ How to use
 
 * you can modify **org.goodev.picker.GalleryPickerActivity.onActionItemClicked(ActionMode, MenuItem)** method to change the return data type, such as: return photo path, uri, id ...*
 
+```java
+  //return Selected photos ids and file path
+  @Override
+  public boolean onActionItemClicked(android.support.v7.view.ActionMode mode, MenuItem item) {
+    if (item.getItemId() == R.id.menu_done) {
+      SparseBooleanArray position = isGingerbread() ? mAdapter.getCheckedItemPositions() : mGridView.getCheckedItemPositions();
+      final int count = position.size();
+      final ArrayList<String> pathList = new ArrayList<String>();
+
+      for (int i = 0; i < count; i++) {
+        if(position.valueAt(i)) {
+          Cursor cursor = (Cursor) mAdapter.getItem(position.keyAt(i));
+          pathList.add(cursor.getString(DATA_INDEX));
+        }
+      }
+
+      String[] paths = new String[pathList.size()];
+      paths = pathList.toArray(paths);
+      long[] ids = isGingerbread() ? mAdapter.getCheckedItemIds() : mGridView.getCheckedItemIds();
+      
+      Intent data = new Intent();
+      data.putExtra(IntentAction.EXTRA_DATA, ids);
+      data.putExtra(IntentAction.EXTRA_PATH, paths);
+      setResult(RESULT_OK, data);
+      finish();
+      return true;
+    }
+    return false;
+  }
+```
+
 Android 系统选择多个图片 .
 
   **MultiPhotoPicker** : HONEYCOMB (Api 11， 3.0)以上版本。
