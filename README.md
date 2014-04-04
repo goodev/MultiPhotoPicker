@@ -28,6 +28,8 @@ How to use
       startActivityForResult(intent, CODE);
 ```
 
+* you can modify **org.goodev.picker.GalleryPickerActivity.onActionItemClicked(ActionMode, MenuItem)** method to change the return data type, such as: return photo path, uri, id ...*
+
 Android 系统选择多个图片 .
 
   **MultiPhotoPicker** : HONEYCOMB (Api 11， 3.0)以上版本。
